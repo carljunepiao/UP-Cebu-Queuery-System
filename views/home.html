@@ -1,3 +1,4 @@
+<!-- Here is the html for Student -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +11,11 @@
 		
 		<div class="navigation">
 			<h1>Student</h1>
-			<h1>|</h1>
-			<h1>Office</h1>
+			<h1>| Login as Admin: </h1>
+			
+			<form action="/login">
+			    <input class="sbutton" type="submit" value="Admin">
+			</form>
 		</div>
 
 		<div class="main">
@@ -19,7 +23,7 @@
 			
 			<div class="container2">
 				<h1>Reservation</h1>
-				<h2>{{ messages.ticketno }}</h2>
+				<!-- <h2>{{ messages.ticketno }}</h2> -->
 			  	<form action="/sendStudent" method="post">
 
 			    	<label id="labels" for="fname">Full Name</label>

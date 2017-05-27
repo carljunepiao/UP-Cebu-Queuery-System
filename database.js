@@ -20,7 +20,7 @@ const Student = database.define('students', {
 		allowNull: false
 	},
 	contactno: {
-		type: Sequelize.INTEGER,
+		type: Sequelize.BIGINT,
 		allowNull: false
 	},
     office: {
@@ -35,6 +35,30 @@ const Student = database.define('students', {
 	timestamps: true
 });
 
+const Admin = database.define('admins', {
+	id: {
+		type: Sequelize.INTEGER,
+		primaryKey: true,
+		autoIncrement: true,
+		allowNull: false
+	},
+	email: {
+		type: Sequelize.STRING,
+		unique: true,
+		allowNull: false
+	},
+    name: {
+        type: Sequelize.STRING
+    },
+	password: {
+		type: Sequelize.STRING,
+		allowNull: false
+	}
+}, {
+	timestamps: true
+});
+
 database.sync();
 
 module.exports.Student = Student;
+module.exports.Admin = Admin;

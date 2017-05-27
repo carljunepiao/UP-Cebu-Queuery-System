@@ -38,8 +38,15 @@ body {
     margin-bottom: 16px; /* Bottom margin */
     resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
 }
-.container > .navigation > h1{
+.navigation > h1 {
 	margin-right: 20px;
+}
+.container > .navigation > #navi{
+	margin-right: 20px;
+	width: 200px;
+    /*border: 20px solid green;*/
+    padding: 20px;
+    margin: 20px;
 }
 
 .container > .main > h1{
