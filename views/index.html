@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  
+
   <title>Nexmo SMS Web App Demo</title>
   <meta name="description" content="Nexmo SMS Demo">
   <meta name="author" content="Tomomi Imura  @girlie_mac">
@@ -16,25 +16,11 @@
 </head>
 
 <body>
-  
+
   <header>
     <h1>Text Anybody</h1>
     <img class="logo" src="images/nexmo-white.png">
   </header>
-  
-  <div id="start">
-      <p class="statMsg isa_info">{{ messages.statusMessage }}</p>
-
-      {% if user.name == null %}
-          <h1 class="statMsg">{{ user.email }}</h1>
-      {% else %}
-          <h1 class="statMsg">{{ user.name }}</h1>
-      {% endif %}
-
-      <br><br>
-      <a href="/signout"><button class="button-1">Sign Out</button></a>
-      <hr>
-  </div>
 
   <section id="main" role="main">
     <p class="intro">Enter a number, begins with a country code</p>

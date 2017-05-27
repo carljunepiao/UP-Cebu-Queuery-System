@@ -89,6 +89,17 @@ h4 {
     background-color: #0a4b80;
 }
 
+.question {
+    background-color: rgba(72, 61, 139, 0.41);
+    border-radius: 5px;
+}
+
+.form {
+    background-color: rgba(146, 29, 29, 0.36);
+    border-radius: 5px;
+    margin-top: 40px;
+}
+
 #nav {
   background-color: #2e0577;
   text-shadow: 2px 2px 5px #000000;

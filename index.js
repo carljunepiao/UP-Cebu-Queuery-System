@@ -83,6 +83,10 @@ app.get('/login', (req, res) => {
   res.render('signin.html');
 });
 
+app.get('/faq', (req, res) => {
+  res.render('faq.html');
+});
+
 app.get('/admin', requireSignedIn, function(req, res) {
   Admin.findOne({ where: { email: req.user } }).then(function(user) {
     res.render('index.html', {
