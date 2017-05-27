@@ -1,0 +1,21 @@
+{
+  "name": "up-cebu-queuery-system",
+  "version": "1.0.0",
+  "description": "CMSC 126 Hackathon Project with the theme \"Make UP Cebu Better\". Our team \"Bayaning Third-wheels\", decided to create queuery system for UP Cebu. It has been a problem of students in UP Cebu of waiting in long lines and not being able to be serve because of too much people or not having enough time.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carljunepiao/UP-Cebu-Queuery-System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carljunepiao/UP-Cebu-Queuery-System/issues"
+  },
+  "homepage": "https://github.com/carljunepiao/UP-Cebu-Queuery-System#readme"
+}
