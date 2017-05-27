@@ -8,8 +8,11 @@ const ejs = require('ejs');
 const Nexmo = require('nexmo');
 const socketio = require('socket.io');
 const session = require('express-session');
-const Student = require('./database').Student;
-const Admin = require('./database').Admin;
+const Student = require('./model').Student;
+const Admin = require('./model').Admin;
+const cookieparser = require('cookie-parser');
+const database = require('./database');
+
 
 const app = express();
 const server = app.listen(4000, () => {
