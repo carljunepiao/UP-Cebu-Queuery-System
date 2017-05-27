@@ -19,17 +19,17 @@
 			
 			<div class="container2">
 				<h1>Reservation</h1>
-				<!-- <h2>{{ messages.statusMsg }}</h2> -->
-			  	<form action="/contacts" method="post">
+				<h2>{{ messages.ticketno }}</h2>
+			  	<form action="/sendStudent" method="post">
 
 			    	<label id="labels" for="fname">Full Name</label>
-				    <input type="text" id="fname" name="firstname" placeholder="Your full name.." required>
+				    <input type="text" id="fname" name="fname" placeholder="Your full name.." required>
 
 				    <label id="labels" for="studentno">Student Number</label>
 				    <input type="text" id="lname" name="studentno" placeholder="20XX-XXXXX" required>
 					
 					<label id="labels" for="contactno">Contact Number</label>
-				    <input type="text" id="fname" name="firstname" placeholder="63XXXXXXXXXX" required>
+				    <input type="text" id="fname" name="contactno" placeholder="63XXXXXXXXXX" required>
 
 				    <label id="labels" for="office">Office</label>
 				    <select id="labels" name="office" required>

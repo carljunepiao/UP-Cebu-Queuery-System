@@ -63,7 +63,7 @@
       // Ideally, use XHR as the fallback for fetch.
     }
 
-    fetch('/', {
+    fetch('/admin', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'

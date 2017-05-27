@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const connectionUrl = 'postgres://pgQueue:pgQueue@localhost:5432/pgQueue';
+const connectionUrl = 'postgres://pgdemo:pgdemo@localhost:5432/pgdemo';
 const database = new Sequelize(connectionUrl);
 
 const Student = database.define('students', {
@@ -15,12 +15,12 @@ const Student = database.define('students', {
 		allowNull: false
 	},
 	studentno: {
-		type: Sequelize.INTEGER,
+		type: Sequelize.STRING,
 		primaryKey: true,
 		allowNull: false
 	},
 	contactno: {
-		type: Sequelize.INTEGER,
+		type: Sequelize.TEXT,
 		allowNull: false
 	},
     office: {
@@ -34,8 +34,6 @@ const Student = database.define('students', {
 }, {
 	timestamps: true
 });
-
-
 
 database.sync();
 

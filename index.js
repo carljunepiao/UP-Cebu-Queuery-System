@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const Nexmo = require('nexmo');
 const socketio = require('socket.io');
+const Student = require('./database').Student;
 
 const app = express();
 const server = app.listen(4000, () => {
@@ -13,14 +14,12 @@ const server = app.listen(4000, () => {
 });
 
 // Nexmo init
-
 const nexmo = new Nexmo({
   apiKey: config.api_key,
   apiSecret: config.api_secret,
 }, {debug: true});
 
 // socket.io
-
 const io = socketio(server);
 io.on('connection', (socket) => {
   console.log('Socket connected');
@@ -30,7 +29,6 @@ io.on('connection', (socket) => {
 });
 
 // Configure Express
-
 app.use(express.static(__dirname + './views'));
 app.set('view engine', 'html');
 app.engine('html', ejs.renderFile);
@@ -39,6 +37,30 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Express routes
+app.get('/', function(req,res){
+  res.render('home.html');
+});
+
+app.post('/sendStudent', function(req,res){
+  console.log(req.body);
+
+  var fname = req.body.fname;
+  var studentno = req.body.studentno;
+  var contactno = req.body.contactno;
+  var office = req.body.office;
+  var purpose = req.body.purpose;
+
+    Student.create({
+            fname: fname,
+            studentno: studentno,
+            contactno: contactno,
+            office: office,
+            purpose : purpose
+    }).then(function(){
+      // req.flash('statusMsg', 'Successfully reserved a ticket!');
+      res.redirect('/');
+    });
+});
 
 app.get('/admin', (req, res) => {
   res.render('index.html');
@@ -49,7 +71,7 @@ app.post('/admin', (req, res) => {
 
   let toNumber = req.body.number;
   let text = req.body.text;
-
+  console.log(text);
   let data = {}; // the data to be emitted to front-end
 
   // Sending SMS via Nexmo
@@ -79,27 +101,4 @@ app.post('/admin', (req, res) => {
     }
   });
 
-});
-
-app.get('/', function(req,res){
-  res.render('home.html');
-});
-
-app.post('/contacts', function(req,res){
-  console.log(req.body);
-
-  var fname = req.body.firstname;
-  var lname = req.body.lastname;
-  var country = req.body.country;
-  var message = req.body.message;
-
-  Visitor.create({
-            fname: fname,
-            lname: lname,
-            country: country,
-            message: message
-    }).then(function(){
-        req.flash('statusMsg', 'Successfully sent message!');
-      res.redirect('/contact');
-    });
 });
