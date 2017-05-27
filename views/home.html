@@ -1,20 +1,17 @@
-<!-- Here is the html for Student -->
 <!DOCTYPE html>
 <html>
 	<head>
-	    <head>
-		    <title>Notify Me Senpai</title>
-		    <meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link href="static/css/bootstrap.min.css" rel="stylesheet">
-			<link href="static/css/googleapis.css" rel="stylesheet">
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-			<link href="static/css/style.css" rel="stylesheet">
-		</head>
+	    <title>Notify Me Senpai</title>
+	    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="static/css/googleapis.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="static/css/style.css" rel="stylesheet">
 	</head>
-	<body>
-		<!-- Navbar -->
-		<nav id="nav" class="navbar navbar-default navbar-fixed-top">
+	<body>			
+			<!-- Navbar -->
+			<nav id="nav" class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 			  <div class="navbar-header">
 			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -29,74 +26,69 @@
 			  </div>
 			  <div class="collapse navbar-collapse" id="myNavbar">
 			    <ul class="nav navbar-nav navbar-right">
-			      <li><a href="/">HOME</a></li>
-			      <li><a href="/contactus">CONTACT US</a></li>
-			      <li><a href="/faq">FAQ</a></li>
+					<li><a href="/">HOME</a></li>
+					<li><a href="/faq">FAQ</a></li>
+					<li><a href="/login">Login</a></li>					
 			    </ul>
 			  </div>
 			</div>
-		</nav>
+			</nav>
+			<!-- #nav -->
 
-		<!-- Main -->
-		<div id="main" class="container-fluid parallax-1 text-center">
-			<div id='form'>
-			<!-- <h2>{{ messages.ticketno }}</h2> -->
-	          <div class="col-md-6 col-md-offset-3 margin">
-	            <form action="/sendStudent" method="post">
-	              <div class="col-12 title">RESERVE NOW!</div>
-	              <div class="form-group">
-	                <label for="fname" class="col-md-12 col-sm-10 col-sm-offset-1 col-form-label label">Full Name</label>
-	                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-	                  <input class="form-control" type="text" placeholder="Enter name" id="fname" name="fname" required>
-	                </div>
-	                <label for="studentno" class="col-md-12 col-sm-10 col-sm-offset-1 col-form-label label">Student No.</label>
-	                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-	                  <input type="text" class="form-control" id="email" name="studentno" placeholder="20XX-XXXXX" required>
-	                </div>
-	                <label for="contactno" class="col-md-12 col-sm-10 col-sm-offset-1 col-form-label label">Contact No.</label>
-	                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-	                  <input type="text" class="form-control" id="contactno" name="contactno" placeholder="63XXXXXXXXXX">
-	                </div>
-	                <label for="office" class="col-md-12 col-sm-10 col-sm-offset-1 col-form-label label">Offices</label>
-	                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-	                	<select id="labels" name="office" class="form-control" required>
-					      	<option value="osa">OSA</option>
-					      	<option value="accounting">ACCOUNTING</option>
-					      	<option value="cashier">CASHIER</option>
-					      	<option value="library">LIBRARY</option>
-					      	<option value="window">WINDOW 1</option>
-					    </select>
-	                </div>
-				    
-	                <label for="purpose" class="col-md-12 col-sm-10 col-sm-offset-1 col-form-label label">Purpose</label>
-	                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-	                	<select id="labels" name="purpose" class="form-control" required>
-					      	<option value="loan">Loan</option>
-					      	<option value="pay">Pay Tuition</option>
-					      	<option value="sign">Sign</option>
-					      	<option value="enroll">Enroll</option>
-					      	<option value="etx">etc</option>
-					    </select>
-	                </div>
-	                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 submit-button">
-	                  <input type="submit" class="btn btn-info submit" value="Submit">
-	                </div>
-	              </div>
-	            </form>
-	          </div>
-	      </div>
-		</div>
+			<!-- Main -->
+			<div id="main" class="container-fluid parallax-1 text-center">
+				<div id='form'>
+				<!-- <h2>{{ messages.ticketno }}</h2> -->
+		          <div class="col-md-6 col-md-offset-3 margin form">
+		            <form action="/sendStudent" method="post">
+		              <div class="col-12 title">FIRST COME, FIRST SERVE!</div>
+		              <div class="form-group">
+		                <label for="fname" class="col-md-12 col-sm-10 col-sm-offset-1 col-form-label label">Full Name</label>
+		                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+		                  <input class="form-control" type="text" placeholder="Enter name" id="fname" name="fname" required>
+		                </div>
+		                <label for="studentno" class="col-md-12 col-sm-10 col-sm-offset-1 col-form-label label">Student No.</label>
+		                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+		                  <input type="text" class="form-control" id="email" name="studentno" placeholder="20XX-XXXXX" required>
+		                </div>
+		                <label for="contactno" class="col-md-12 col-sm-10 col-sm-offset-1 col-form-label label">Contact No.</label>
+		                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+		                  <input type="text" class="form-control" id="contactno" name="contactno" placeholder="63XXXXXXXXXX">
+		                </div>
+		                <label for="office" class="col-md-12 col-sm-10 col-sm-offset-1 col-form-label label">Offices</label>
+		                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+		                	<select id="labels" name="office" class="form-control" required>
+						      	<option value="osa-loan">OSA (Loan)</option>
+						      	<option value="osa-scholarship">OSA (Scholarship)</option>
+						      	<option value="osa-STS">OSA (STS)</option>
+						      	<option value="accounting">ACCOUNTING</option>
+						      	<option value="cashier">CASHIER</option>
+						      	<option value="window-1">WINDOW 1</option>
+						      	<option value="window-2">WINDOW 2</option>
+						      	<option value="window-3">WINDOW 3</option>
+						    </select>
+		                </div>
+		                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 submit-button">
+		                  <input type="submit" class="btn btn-info submit margin" value="Submit">
+		                </div>
+		              </div>
+		            </form>
+		          </div>
+		      </div>
+			</div>
 
-		<!-- Footer -->
-		<footer class="container-fluid bg-1 text-center">
-		  <div class="col-md-12 col-sm-12">
-		    <p><h5>© 2017 by Bayaning Third Wheels. All rights reserved.</a></h5></p> 
-		  </div>
-		</footer>
+			<!-- Footer -->
+			<footer class="container-fluid bg-1 text-center">
+			  <div class="col-md-12 col-sm-12">
+			    <p><h5>© 2017 by Bayaning Third Wheels. All rights reserved.</a></h5></p> 
+			  </div>
+			</footer>
 
 	</body>
+
 	<!-- jquery -->
 	<script src="static/js/jquery.min.js"></script>
 	<!-- bootstrap -->
 	<script src="static/js/bootstrap.min.js"></script>
+
 </html>

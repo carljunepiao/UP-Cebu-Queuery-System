@@ -7,7 +7,6 @@
 	<table class="table">
   <thead>
     <tr>
-      <th>#</th>
       <th>Student Name</th>
       <th>Student Number</th>
       <th>Contact Number</th>
@@ -16,17 +15,17 @@
   	{% for results in res %}
 		<tbody>
 	    <tr>
-	      <th scope="row">1</th>
 	      <td>{{ results.fname }}</td>
 	      <td>{{ results.studentno }}</td>
 	      <td>{{ results.contactno }}</td>
 	    </tr>
 	  </tbody>
 	{% endfor%}
-  
 </table>
 
-
+<form action="/serving" method="post">
+	<input type="submit" class="btn btn-info submit" value="Serving">
+</form>
 
 
 </body>

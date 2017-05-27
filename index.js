@@ -7,11 +7,7 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const Nexmo = require('nexmo');
 const socketio = require('socket.io');
-const session = require('express-session');
-const Sequelize = require('sequelize');
-const database = require('./database');
 const Student = require('./database').Student;
-const Admin = require('./database').Admin;
 
 const app = express();
 const server = app.listen(4000, () => {
@@ -33,23 +29,18 @@ io.on('connection', (socket) => {
   });
 });
 
+app.engine('html', consolidate.nunjucks);
+//app.set('views', './views');
 // Configure Express
-app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cookie' }));
 app.use(express.static(__dirname + './views'));
 app.set('view engine', 'html');
-app.engine('html', consolidate.nunjucks);
-//app.engine('html', ejs.renderFile);
-app.use('/static', express.static('./static'));
+// app.engine('html', ejs.renderFile);
 //app.use(express.static('./public'));
+app.use('/static', express.static('./static'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(require('./auth'));
 
-var user = function retrieveSignedInUser(req,res,next) {
-  req.user = req.session.currentUser;
-  next();
-};
-app.use(user);
+
 
 //-- Express routes
 // route to student form
@@ -82,34 +73,12 @@ app.get('/login', (req, res) => {
   res.render('signin.html');
 });
 
-app.get('/admin', requireSignedIn, function(req, res) {
-  Admin.findOne({ where: { email: req.user } }).then(function(user) {
-    res.render('index.html', {
-      user: user
-    });
-  });
+app.get('/faq', (req, res) => {
+  res.render('faq.html');
 });
 
-app.get('/officeview', function(req, res){
-  //check who is logged in
-  //const getuser
-
-  Student.findAll({ where: {office: "osa"} }).then(function(results){
-    res.render('officeview.html', {
-      res: results
-    });
-  });
-});
-
-app.post('/serving', function(req, res){
-  //check kinsa ang currently gina serve
-
-  Sequelize.sequelize.query("SELECT * FROM `students`", { type: Sequelize.QueryTypes.SELECT})
-  .then(function(users) {
-    // We don't need spread here, since only the results will be returned for select queries
-  })
-  console.log(req.body);
-  console.log();
+app.get('/admin', (req, res) => {
+  res.render('index.html');
 });
 
 app.post('/admin', (req, res) => {
@@ -148,10 +117,3 @@ app.post('/admin', (req, res) => {
   });
 
 });
-
-function requireSignedIn(req, res, next) {
-    if (!req.session.currentUser) {
-        return res.redirect('/');
-    }
-    next();
-}
