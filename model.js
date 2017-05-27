@@ -56,7 +56,5 @@ const Admin = database.define('admins', {
 	timestamps: true
 });
 
-database.sync();
-
 module.exports.Student = Student;
 module.exports.Admin = Admin;
