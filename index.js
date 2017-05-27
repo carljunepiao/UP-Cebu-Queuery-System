@@ -36,7 +36,8 @@ app.use(express.static('./public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Express routes
+//-- Express routes
+// route to student form
 app.get('/', function(req,res){
   res.render('home.html');
 });

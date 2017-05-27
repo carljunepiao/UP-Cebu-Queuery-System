@@ -20,7 +20,7 @@ const Student = database.define('students', {
 		allowNull: false
 	},
 	contactno: {
-		type: Sequelize.TEXT,
+		type: Sequelize.INTEGER,
 		allowNull: false
 	},
     office: {
