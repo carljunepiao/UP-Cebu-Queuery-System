@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Queueueueue</title>
+    <link href="css/home-style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+	<div class="container">
+		
+		<div class="navigation">
+			<h1>Student</h1>
+			<h1>|</h1>
+			<h1>Office</h1>
+		</div>
+
+		<div class="main">
+			<h1>RESERVE A TICKET</h1>
+			
+			<div class="container2">
+				<h1>Reservation</h1>
+				<!-- <h2>{{ messages.statusMsg }}</h2> -->
+			  	<form action="/contacts" method="post">
+
+			    	<label id="labels" for="fname">Full Name</label>
+				    <input type="text" id="fname" name="firstname" placeholder="Your full name.." required>
+
+				    <label id="labels" for="studentno">Student Number</label>
+				    <input type="text" id="lname" name="studentno" placeholder="20XX-XXXXX" required>
+					
+					<label id="labels" for="contact">Contact Number</label>
+				    <input type="text" id="fname" name="firstname" placeholder="63XXXXXXXXXX" required>
+
+				    <label id="labels" for="office">Office</label>
+				    <select id="labels" name="office" required>
+				      	<option value="osa">OSA</option>
+				      	<option value="accounting">ACCOUNTING</option>
+				      	<option value="cashier">CASHIER</option>
+				      	<option value="library">LIBRARY</option>
+				      	<option value="window">WINDOW 1</option>
+				    </select>
+
+				    <label id="labels" for="purpose">Purpose</label>
+				    <select id="labels" name="purpose" required>
+				      	<option value="loan">Loan</option>
+				      	<option value="pay">Pay Tuition</option>
+				      	<option value="sign">Sign</option>
+				      	<option value="enroll">Enroll</option>
+				      	<option value="etx">etc</option>
+				    </select>
+
+				    <label id="labels" for="subject">Message</label>
+				    <textarea id="subject" name="message" placeholder="Write something.." style="height:200px" required></textarea>
+
+				    <input class="sbutton" type="submit" value="Submit">
+			  	</form>
+			</div>
+
+			<footer>Copyright &copy; 2017 Charlito Piao. All rights reserved</footer>
+		</div>
+
+	</div>
+
+</body>
+</html>

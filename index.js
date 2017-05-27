@@ -7,7 +7,6 @@ const ejs = require('ejs');
 const Nexmo = require('nexmo');
 const socketio = require('socket.io');
 
-
 const app = express();
 const server = app.listen(4000, () => {
   console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
@@ -32,7 +31,6 @@ io.on('connection', (socket) => {
 
 // Configure Express
 
-// app.set('views', __dirname + './views');
 app.use(express.static(__dirname + './views'));
 app.set('view engine', 'html');
 app.engine('html', ejs.renderFile);
@@ -42,11 +40,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Express routes
 
-app.get('/', (req, res) => {
-  res.render('index');
+app.get('/admin', (req, res) => {
+  res.render('index.html');
 });
 
-app.post('/', (req, res) => {
+app.post('/admin', (req, res) => {
   res.send(req.body);
 
   let toNumber = req.body.number;
@@ -81,4 +79,27 @@ app.post('/', (req, res) => {
     }
   });
 
+});
+
+app.get('/', function(req,res){
+  res.render('home.html');
+});
+
+app.post('/contacts', function(req,res){
+  console.log(req.body);
+
+  var fname = req.body.firstname;
+  var lname = req.body.lastname;
+  var country = req.body.country;
+  var message = req.body.message;
+
+  Visitor.create({
+            fname: fname,
+            lname: lname,
+            country: country,
+            message: message
+    }).then(function(){
+        req.flash('statusMsg', 'Successfully sent message!');
+      res.redirect('/contact');
+    });
 });
