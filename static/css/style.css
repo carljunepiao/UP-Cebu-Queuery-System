@@ -1,0 +1,95 @@
+body {
+  font: 20px Montserrat, sans-serif;
+  line-height: 1.8;
+  color: #f5f6f7;
+}
+
+p {
+  font-size: 16px;
+  }
+
+.margin {
+  margin-bottom: 45px;
+}
+
+img {
+  opacity: 1.0;
+}
+
+h4 {
+  color: white;
+}
+
+.bg-1 { 
+  background-color: black;
+  color: #ffffff;
+}
+
+.container-fluid {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.navbar {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 5px;
+}
+
+.navbar-nav  li a:hover {
+  color: #ffbdbd !important;
+}
+
+.navbar-default .navbar-brand {
+    color: #c5c0c0;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #d6cfcf;
+}
+
+.parallax-1 {
+  background-image: url("../images/oblation3.jpg");
+  min-height: 100px;
+}
+
+.parallax-1 {
+  position: relative;
+  opacity: 0.75;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.label {
+  text-align: -webkit-auto;
+  padding-left: 15px;
+  margin-top: 18px;
+  margin-bottom: 3px;
+}
+
+.title {
+  font-size: xx-large;
+  padding-top: 20px;
+  text-shadow: 2px 2px 5px #000000;
+}
+
+.submit-button {
+  margin-top: 10px;
+  text-align: -webkit-auto;
+  margin-top: 25px;
+}
+
+.btn-info {
+    background-color: #0a4b80;
+}
+
+#nav {
+  background-color: #2e0577;
+  text-shadow: 2px 2px 5px #000000;
+}

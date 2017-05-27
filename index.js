@@ -1,6 +1,7 @@
 'use strict';
 
 const config = require('./config');
+const consolidate = require('consolidate');
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
@@ -34,8 +35,10 @@ io.on('connection', (socket) => {
 app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cookie' }));
 app.use(express.static(__dirname + './views'));
 app.set('view engine', 'html');
-app.engine('html', ejs.renderFile);
-app.use(express.static('./public'));
+app.engine('html', consolidate.nunjucks);
+//app.engine('html', ejs.renderFile);
+app.use('/static', express.static('./static'));
+//app.use(express.static('./public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('./auth'));
