@@ -8,6 +8,8 @@ const ejs = require('ejs');
 const Nexmo = require('nexmo');
 const socketio = require('socket.io');
 const session = require('express-session');
+const Sequelize = require('sequelize');
+const database = require('./database');
 const Student = require('./database').Student;
 const Admin = require('./database').Admin;
 
@@ -86,6 +88,28 @@ app.get('/admin', requireSignedIn, function(req, res) {
       user: user
     });
   });
+});
+
+app.get('/officeview', function(req, res){
+  //check who is logged in
+  //const getuser
+
+  Student.findAll({ where: {office: "osa"} }).then(function(results){
+    res.render('officeview.html', {
+      res: results
+    });
+  });
+});
+
+app.post('/serving', function(req, res){
+  //check kinsa ang currently gina serve
+
+  Sequelize.sequelize.query("SELECT * FROM `students`", { type: Sequelize.QueryTypes.SELECT})
+  .then(function(users) {
+    // We don't need spread here, since only the results will be returned for select queries
+  })
+  console.log(req.body);
+  console.log();
 });
 
 app.post('/admin', (req, res) => {
