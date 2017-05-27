@@ -1,5 +1,3 @@
-<!-- Here is the html for Admin -->
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,18 +7,41 @@
   <title>Nexmo SMS Web App Demo</title>
   <meta name="description" content="Nexmo SMS Demo">
   <meta name="author" content="Tomomi Imura  @girlie_mac">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Noto+Sans">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/css/googleapis.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Noto+Sans"> -->
   <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
 <body>
 
-  <header>
-    <h1>Text Anybody</h1>
-    <img class="logo" src="images/nexmo-white.png">
-  </header>
+  <!-- Navbar -->
+  <nav id="nav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="/" style="padding-top: inherit;">
+          <img src="static/images/nav-pic.jpg" class="img-responsive img-circle" style="display:inline" alt="Bird" width="50" height="50">
+          <b>Jannielyn</b>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/aboutme">ABOUT</a></li>
+          <li><a href="/blog">BLOG</a></li>
+          <li><a href="/contactme">CONTACT ME</a></li>
+          <li><a href="/faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <section id="main" role="main">
     <p class="intro">Enter a number, begins with a country code</p>
@@ -35,6 +56,11 @@
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/app.js"></script>
+
+  <!-- jquery -->
+  <script src="static/js/jquery.min.js"></script>
+  <!-- bootstrap -->
+  <script src="static/js/bootstrap.min.js"></script>
 
 </body>
 </html>
