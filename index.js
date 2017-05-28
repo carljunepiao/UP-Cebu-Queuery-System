@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const Nexmo = require('nexmo');
 const socketio = require('socket.io');
-const Student = require('./database').Student;
+const Student = require('./model').Student;
 
 const app = express();
 const server = app.listen(4000, () => {
@@ -55,14 +55,12 @@ app.post('/sendStudent', function(req,res){
   var studentno = req.body.studentno;
   var contactno = req.body.contactno;
   var office = req.body.office;
-  var purpose = req.body.purpose;
 
     Student.create({
             fname: fname,
             studentno: studentno,
             contactno: contactno,
-            office: office,
-            purpose : purpose
+            office: office
     }).then(function(){
       // req.flash('statusMsg', 'Successfully reserved a ticket!');
       res.redirect('/');
@@ -79,6 +77,33 @@ app.get('/faq', (req, res) => {
 
 app.get('/admin', (req, res) => {
   res.render('index.html');
+});
+
+app.get('/officeview', function(req, res){
+  //check who is logged in
+  //const getuser
+
+  Student.findAll({ where: {office: "osa-loan"} }).then(function(results){
+    res.render('officeview.html', {
+      res: results
+    });
+  });
+});
+
+app.post('/serving', function(req, res){
+  //check kinsa ang currently gina serve
+  Student.min('priorityno').then(function(result){
+    console.log(result);
+    Student.destroy( {where: {
+      priorityno: result}
+    }).then(function(){
+      res.redirect('/officeview');
+    });
+  });
+  
+
+  console.log(req.body);
+  console.log();
 });
 
 app.post('/admin', (req, res) => {
