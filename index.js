@@ -7,7 +7,11 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const Nexmo = require('nexmo');
 const socketio = require('socket.io');
+const session = require('express-session');
 const Student = require('./model').Student;
+const Admin = require('./model').Admin;
+const cookieparser = require('cookie-parser');
+const database = require('./database');
 
 const app = express();
 const server = app.listen(4000, () => {
@@ -30,6 +34,7 @@ io.on('connection', (socket) => {
 });
 
 app.engine('html', consolidate.nunjucks);
+app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cookie' }));
 //app.set('views', './views');
 // Configure Express
 app.use(express.static(__dirname + './views'));
@@ -39,7 +44,13 @@ app.set('view engine', 'html');
 app.use('/static', express.static('./static'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(require('./auth'));
 
+var user = function retrieveSignedInUser(req,res,next) {
+  req.user = req.session.currentUser;
+  next();
+};
+app.use(user);
 
 
 //-- Express routes
@@ -75,8 +86,12 @@ app.get('/faq', (req, res) => {
   res.render('faq.html');
 });
 
-app.get('/admin', (req, res) => {
-  res.render('index.html');
+app.get('/admin', requireSignedIn, function(req, res) {
+  Admin.findOne({ where: { email: req.user } }).then(function(user) {
+    res.render('index.html', {
+      user: user
+    });
+  });
 });
 
 app.get('/officeview', function(req, res){
@@ -142,3 +157,10 @@ app.post('/admin', (req, res) => {
   });
 
 });
+
+function requireSignedIn(req, res, next) {
+    if (!req.session.currentUser) {
+        return res.redirect('/');
+    }
+    next();
+}
