@@ -26,15 +26,27 @@
       <p class="statMsg isa_info">{{ messages.statusMessage }}</p>
 
       {% if user.name == null %}
-          <h1 class="statMsg">{{ user.email }}</h1>
+          <h1 class="statMsg">{{ user.email }} mao ni email</h1>
       {% else %}
-          <h1 class="statMsg">{{ user.name }}</h1>
+          <h1 class="statMsg">{{ user.name }} mao ni name</h1>
       {% endif %}
 
       <br><br>
       <a href="/signout"><button class="button-1">Sign Out</button></a>
       <hr>
+
+
+      <!-- List -->
+      <ul>
+        {% for student in students %}
+          <li> {{student}} student </li>
+        {% endfor %}
+      </ul>
+
   </div>
+
+  
+
 
   <section id="main" role="main">
     <p class="intro">Enter a number, begins with a country code</p>

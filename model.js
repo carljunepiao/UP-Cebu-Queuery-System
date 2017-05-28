@@ -25,10 +25,10 @@ const Student = database.define('students', {
         type: Sequelize.STRING,
 		allowNull: false
     },
-	purpose: {
-		type: Sequelize.STRING,
-		allowNull: false
-	}
+	// purpose: {
+	// 	type: Sequelize.STRING,
+	// 	allowNull: false
+	// }
 }, {
 	timestamps: true
 });
