@@ -1,32 +1,85 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Pending Booking</title>
-</head>
-<body>
-	<table class="table">
-  <thead>
-    <tr>
-      <th>Student Name</th>
-      <th>Student Number</th>
-      <th>Contact Number</th>
-    </tr>
-  </thead>
-  	{% for results in res %}
-		<tbody>
-	    <tr>
-	      <td>{{ results.fname }}</td>
-	      <td>{{ results.studentno }}</td>
-	      <td>{{ results.contactno }}</td>
-	    </tr>
-	  </tbody>
-	{% endfor%}
-</table>
+	<head>
+        <title>Notify Me Senpai</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="static/css/googleapis.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="static/css/style.css" rel="stylesheet">
+    </head>
+	<body>
+		<!-- Navbar -->
+        <nav id="nav" class="navbar navbar-default navbar-fixed-top">
+	        <div class="container">
+	          <div class="navbar-header">
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	              <span class="icon-bar"></span>
+	              <span class="icon-bar"></span>
+	              <span class="icon-bar"></span>                        
+	            </button>
+	            <a class="navbar-brand" href="/" style="padding-top: inherit;">
+	              <img src="static/images/UPC_logo.png" class="img-responsive img-circle" style="display:inline" alt="UP-logo" width="50" height="50">
+	              <b>Notify Me Senpai</b>
+	            </a>
+	          </div>
+	          <div class="collapse navbar-collapse" id="myNavbar">
+	            <ul class="nav navbar-nav navbar-right">
+	                <li><a href="/">HOME</a></li>
+	                <li><a href="/faq">FAQ</a></li>
+	                <li><a href="/login">Login</a></li>                 
+	            </ul>
+	          </div>
+	        </div>
+        </nav>
+        <!-- #nav -->
 
-<form action="/serving" method="post">
-	<input type="submit" class="btn btn-info submit" value="Serving">
-</form>
+        <div id="main" class="container-fluid parallax-1 text-center">
+        	<div class="container" style="max-width: 1000px;">
+	        	<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th colspan=3>Requests</th>
+							</tr>
+					    	<tr>
+						      <th>Student Name</th>
+						      <th>Student Number</th>
+						      <th>Contact Number</th>
+						    </tr>
+						</thead>
+					    {% for results in res %}
+							<tbody>
+								<tr>
+								  <td>{{ results.fname }}</td>
+								  <td>{{ results.studentno }}</td>
+								  <td>{{ results.contactno }}</td>
+								</tr>
+							</tbody>
+						{% endfor%}
 
+					</table>
+				</div>
+			</div>
+			<form action="/serving" method="post">
+				<input type="submit" class="btn btn-info submit" value="Serving">
+			</form>
 
-</body>
+			<div class="form margin">
+				<section id="main" role="main">
+				  <p class="intro">Enter a number, begins with a country code</p>
+				  <form>
+				    <input type="tel" name="number" placeholder="15551231234" required>
+				    <input type="text" name="text" placeholder="Hello">
+				    <input type="button" value="Send SMS">
+				  </form>
+				</section>
+
+				<p class="response"></p>
+			</div>
+			<script src="/socket.io/socket.io.js"></script>
+			<script src="js/app.js"></script>
+        </div>
+	</body>
 </html>
