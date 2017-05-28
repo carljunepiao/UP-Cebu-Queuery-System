@@ -40,7 +40,7 @@ app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cooki
 app.use(express.static(__dirname + './views'));
 app.set('view engine', 'html');
 // app.engine('html', ejs.renderFile);
-//app.use(express.static('./public'));
+app.use(express.static('./public'));
 app.use('/static', express.static('./static'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -88,7 +88,7 @@ app.get('/faq', (req, res) => {
 
 app.get('/admin', requireSignedIn, function(req, res) {
   Admin.findOne({ where: { email: req.user } }).then(function(user) {
-    res.render('index.html', {
+    res.render('officeview.html', {
       user: user
     });
   });
