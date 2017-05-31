@@ -18,20 +18,6 @@ const server = app.listen(4000, () => {
   console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
 });
 
-// Nexmo init
-const nexmo = new Nexmo({
-  apiKey: config.api_key,
-  apiSecret: config.api_secret,
-}, {debug: true});
-
-// socket.io
-const io = socketio(server);
-io.on('connection', (socket) => {
-  console.log('Socket connected');
-  socket.on('disconnect', () => {
-    console.log('Socket disconnected');
-  });
-});
 
 app.engine('html', consolidate.nunjucks);
 app.use(session({ resave: false, saveUninitialized: false, secret: 'secret-cookie' }));
@@ -74,6 +60,9 @@ app.post('/sendStudent', function(req,res){
             office: office
     }).then(function(){
       // req.flash('statusMsg', 'Successfully reserved a ticket!');
+        //text first 5
+        //check if the db has less than 5 tuples
+        //if less than 5, text right away
       res.redirect('/');
     });
 });
@@ -86,37 +75,56 @@ app.get('/faq', (req, res) => {
   res.render('faq.html');
 });
 
-app.get('/admin', requireSignedIn, function(req, res) {
-  Admin.findOne({ where: { email: req.user } }).then(function(user) {
-    res.render('officeview.html', {
-      user: user
-    });
-  });
-});
+// app.get('/admin', requireSignedIn, function(req, res) {
+//   Admin.findOne({ where: { email: req.user } }).then(function(user) {
+//     res.render('officeview.html', {
+//       user: user
+//     });
+//   });
+// });
 
-app.get('/officeview', function(req, res){
+app.get('/admin',requireSignedIn, function(req, res){
   //check who is logged in
   //const getuser
 
-  Student.findAll({ where: {office: "osa-loan"} }).then(function(results){
+  Student.findAll().then(function(results){
     res.render('officeview.html', {
       res: results
     });
   });
 });
 
+var current;
+var nextperson;
+let data = {}; // the data to be emitted to front-end
+var recipient; //recipient of the txt message
+
 app.post('/serving', function(req, res){
-  //check kinsa ang currently gina serve
   Student.min('priorityno').then(function(result){
     console.log(result);
+    current = result;
+    console.log('current');
+    console.log(current);
     Student.destroy( {where: {
       priorityno: result}
     }).then(function(){
-      res.redirect('/officeview');
+      nextperson = current + 5;
+      Student.findOne({where: { priorityno: nextperson } }).then(function(stud){
+        console.log('stud');
+        console.log(stud);
+        console.log('nextperson ');
+        console.log(nextperson);
+        //get the person na teksan
+        Student.findOne({ where: { priorityno: nextperson } }).then(function(next){
+          recipient = next.contactno;
+          //send message
+          sendmessage(recipient);
+        });
+      });
+      res.redirect('/admin');
     });
   });
   
-
   console.log(req.body);
   console.log();
 });
@@ -125,14 +133,42 @@ app.post('/admin', (req, res) => {
   res.send(req.body);
 
   let toNumber = req.body.number;
-  let text = req.body.text;
-  console.log(text);
-  let data = {}; // the data to be emitted to front-end
+  console.log("toNumber");
+  console.log(toNumber);
+
+  sendmessage(toNumber);
+
+  // Basic Number Insight - get info about the phone number
+  nexmo.numberInsight.get({level:'basic', number: toNumber}, (err, responseData) => {
+    if (err) console.log(err);
+    else {
+      console.dir(responseData);
+    }
+  });
+
+});
+
+
+function sendmessage(toNumber){
+  // Nexmo init
+  const nexmo = new Nexmo({
+    apiKey: config.api_key,
+    apiSecret: config.api_secret,
+  }, {debug: true});
+
+  // socket.io
+  const io = socketio(server);
+  io.on('connection', (socket) => {
+    console.log('Socket connected index');
+    socket.on('disconnect', () => {
+      console.log('Socket disconnected');
+    });
+  });
 
   // Sending SMS via Nexmo
   nexmo.message.sendSms(
-    config.number, toNumber, text, {type: 'unicode'},
-    (err, responseData) => {
+    config.number, toNumber, 'Pls come to the office soon.', {type: 'unicode'},
+    (err, responseData) => { console.log('here');
       if (err) {
         data = {error: err};
       } else {
@@ -147,16 +183,7 @@ app.post('/admin', (req, res) => {
       }
     }
   );
-
-  // Basic Number Insight - get info about the phone number
-  nexmo.numberInsight.get({level:'basic', number: toNumber}, (err, responseData) => {
-    if (err) console.log(err);
-    else {
-      console.dir(responseData);
-    }
-  });
-
-});
+}
 
 function requireSignedIn(req, res, next) {
     if (!req.session.currentUser) {

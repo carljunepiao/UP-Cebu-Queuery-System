@@ -28,19 +28,25 @@
 	            <ul class="nav navbar-nav navbar-right">
 	                <li><a href="/">HOME</a></li>
 	                <li><a href="/faq">FAQ</a></li>
-	                <li><a href="/signout">Logout</a></li>                 
+	                <li><a href="/signout">Logout</a></li>
 	            </ul>
 	          </div>
 	        </div>
         </nav>
-        <!-- #nav -->
 
         <div id="main" class="container-fluid parallax-1 text-center">
+
         	<div class="container form" style="max-width: 1000px; padding-bottom: 20px;">
         		<div class="col-12 title">Queue</div>
 	        	<div class="table-responsive">
 					<table class="table">
 						<thead>
+
+        	<div class="container" style="max-width: 1000px;">
+	        	<div class="table-responsive">
+					<table class="table">
+						<thead>
+
 					    	<tr>
 						      <th>Student Name</th>
 						      <th>Student Number</th>
@@ -48,7 +54,9 @@
 						    </tr>
 						</thead>
 					    {% for results in res %}
+
 							<tbody style="text-align: -webkit-left;">
+							<tbody>
 								<tr>
 								  <td>{{ results.fname }}</td>
 								  <td>{{ results.studentno }}</td>
@@ -59,6 +67,7 @@
 
 					</table>
 				</div>
+
 				<form action="/serving" method="post">
 					<input type="submit" class="btn btn-info submit" value="Send">
 				</form>
